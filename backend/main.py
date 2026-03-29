@@ -1,8 +1,12 @@
-import gemini as gemini
+import gemini
+from fastapi import FastAPI
 
+app = FastAPI()
+
+
+@app.get("/main")
 def main():
     response = gemini.uploadRecording("4981.mp3")
     print(response)
-    
-if __name__ == "__main__":
-    main()
+    gemini.analyzeSpeach(response)
+    gemini.delete(response)
